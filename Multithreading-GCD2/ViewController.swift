@@ -9,12 +9,17 @@ import UIKit
 
 final class ViewController: UIViewController {
 
+    @IBOutlet weak var button: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        button.isHidden = true
+        button.layer.cornerRadius = 15
         afterBlock(seconds: 2, queue: .main) {
             print(Thread.current)
             self.alertAction()
+            self.button.isHidden = false
         }
     }
     
@@ -25,7 +30,7 @@ final class ViewController: UIViewController {
     }
     
     private func alertAction() {
-        let alertController = UIAlertController(title: "Done!", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Button is presented!", message: nil, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alertController.addAction(okButton)
